@@ -62,25 +62,26 @@ A production-ready personal developer portfolio engineered with **React 18**, **
 
 ---
 
-## 🌐 Deploying to Vercel (Recommended)
+## 🌐 Deploying to Netlify (Recommended)
 
-You can deploy this portfolio to **Vercel** in under 2 minutes:
+You can deploy this portfolio to **Netlify** with continuous Git deployment in under 2 minutes:
 
-### Option A: Via Vercel Web Dashboard (Easiest)
-1. Go to [vercel.com](https://vercel.com/) and sign in with your GitHub account (`imronbekgaipov`).
-2. Click **"Add New..."** -> **"Project"**.
-3. Select `imronbek-portfolio` from your GitHub repository list.
-4. Keep the default settings:
-   - **Framework Preset:** `Vite`
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-5. Click **"Deploy"**. Vercel will build and give you a live production URL (e.g. `https://imronbek-portfolio.vercel.app`).
+### Option A: Via Netlify Web Dashboard
+1. Go to [app.netlify.com](https://app.netlify.com/) and sign in with your GitHub account (**imronbekgaipov**).
+2. Click **"Add new site"** ➔ **"Import an existing project"**.
+3. Choose **"GitHub"** as your Git provider and authorize Netlify.
+4. Select your repository: **`imronbekgaipov/imronbek-portfolio`**.
+5. Netlify will automatically detect settings from `netlify.toml`:
+   - **Branch to deploy:** `main`
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist`
+6. Click **"Deploy imronbek-portfolio"**.
+7. Netlify will build the site and provide you with a live URL (e.g., `https://imronbek-portfolio.netlify.app`), with automatic deployments on every `git push`.
 
-### Option B: Via Vercel CLI
+### Option B: Via Netlify CLI
 ```bash
-npx vercel
+npx netlify deploy --prod
 ```
-Follow the interactive prompts to deploy directly from your terminal.
 
 ---
 

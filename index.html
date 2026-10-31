@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imronbek Gaipov | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">&lt;Imronbek /&gt;</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="btn btn-outline nav-cta">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-content">
+      <div class="badge">Welcome to my space</div>
+      <h1 class="hero-title">
+        Hi, I'm <span class="gradient-text">Imronbek Gaipov</span>
+      </h1>
+      <p class="hero-subtitle">
+        Software Developer & Creator crafting modern, intuitive, and performant web applications.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Dedication</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">Fast</span>
+          <span class="stat-label">Performance</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">Modern</span>
+          <span class="stat-label">Tech Stack</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="card-icon">🚀</div>
+          <h3>Passionate Builder</h3>
+          <p>
+            I enjoy transforming ideas into clean, functional, and visually striking software. 
+            Focused on building accessible, resilient, and responsive web products.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">💡</div>
+          <h3>Continuous Learner</h3>
+          <p>
+            Constantly exploring modern web frameworks, cloud tooling, and automation pipelines 
+            to solve real-world problems effectively.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🎯</div>
+          <h3>Quality & Performance</h3>
+          <p>
+            Clean code, thoughtful user experience, and optimized architecture are at the core 
+            of every solution I create.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-desc">Tools, languages, and technologies I work with</p>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Frontend Development</h3>
+          <div class="skill-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3 / SASS</span>
+            <span class="tag">JavaScript (ES6+)</span>
+            <span class="tag">Responsive Design</span>
+            <span class="tag">Web Performance</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Backend & Architecture</h3>
+          <div class="skill-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">RESTful APIs</span>
+            <span class="tag">Database Design</span>
+            <span class="tag">Security Best Practices</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools & Workflow</h3>
+          <div class="skill-tags">
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">GitHub CLI (gh)</span>
+            <span class="tag">CI / CD</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Linux / PowerShell</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-desc">A selection of my recent works and builds</p>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-type">Web Application</span>
+            <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Project Repository">↗</a>
+          </div>
+          <h3 class="project-title">Interactive Portfolio Website</h3>
+          <p class="project-desc">
+            A fast, responsive portfolio built with modern vanilla web technologies featuring smooth transitions, clean component architecture, and GitHub integration.
+          </p>
+          <div class="project-tech">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>Git</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-type">Developer Tooling</span>
+            <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Project Repository">↗</a>
+          </div>
+          <h3 class="project-title">Automation & Workflow Pipelines</h3>
+          <p class="project-desc">
+            Automated repository synchronization, continuous development workflows, and automated release scripting powered by Git & GitHub CLI.
+          </p>
+          <div class="project-tech">
+            <span>GitHub CLI</span>
+            <span>PowerShell</span>
+            <span>Git Automation</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-type">Fullstack Project</span>
+            <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Project Repository">↗</a>
+          </div>
+          <h3 class="project-title">Cloud-Ready Web Services</h3>
+          <p class="project-desc">
+            Scalable backend API structure with clean data handling, responsive frontend dashboards, and robust error management.
+          </p>
+          <div class="project-tech">
+            <span>API Design</span>
+            <span>REST</span>
+            <span>JSON</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-alt">
+    <div class="container contact-container">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-desc">Interested in collaborating or discussing a new project?</p>
+      
+      <div class="contact-box">
+        <div class="contact-info">
+          <h3>Imronbek Gaipov</h3>
+          <p>Always open to exciting opportunities, innovative projects, and tech discussions.</p>
+          <div class="contact-links">
+            <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+              <span class="icon">🐙</span>
+              <span>github.com/imronbekgaipov</span>
+            </a>
+          </div>
+        </div>
+        <div class="contact-cta">
+          <a href="https://github.com/imronbekgaipov" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Visit GitHub Profile
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="currentYear"></span> Imronbek Gaipov. All rights reserved.</p>
+      <p class="footer-sub">Built with modern web standards & hosted on GitHub.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3 bg-[#05060A]/80 dark:bg-[#05060A]/85 backdrop-blur-md border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
+          ? 'py-3 bg-white/85 dark:bg-[#05060A]/85 backdrop-blur-md border-b border-black/[0.06] dark:border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)]'
           : 'py-5 bg-transparent border-b border-transparent'
       }`}
     >
@@ -43,10 +43,10 @@ export const Navbar: React.FC = () => {
             <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 via-sky-400 to-indigo-600 flex items-center justify-center text-white text-sm shadow-[0_0_15px_rgba(99,102,241,0.5)] group-hover:scale-105 transition-transform">
               ⚡
             </span>
-            <span className="text-white group-hover:text-indigo-300 transition-colors">
+            <span className="text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
               {PERSONAL_INFO.name}
             </span>
-            <span className="text-xs font-mono text-cyan-400/80 px-1.5 py-0.5 rounded bg-cyan-950/60 border border-cyan-800/40">
+            <span className="text-xs font-mono text-cyan-700 dark:text-cyan-400/80 px-1.5 py-0.5 rounded bg-cyan-100 dark:bg-cyan-950/60 border border-cyan-300/40 dark:border-cyan-800/40">
               dev
             </span>
           </a>
@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group py-1"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors relative group py-1"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-400 to-indigo-500 group-hover:w-full transition-all duration-300 rounded-full" />
@@ -67,17 +67,36 @@ export const Navbar: React.FC = () => {
 
           {/* Right Action Icons: Theme Toggle + GitHub + Mobile Hamburger */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
+            {/* Theme Toggle Button with Smooth Icon Rotation */}
             <button
               onClick={toggleTheme}
-              aria-label="Toggle theme mode"
-              className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:border-indigo-500/40 transition-colors"
+              aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              className="relative w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-500/40 transition-colors cursor-pointer group overflow-hidden"
             >
-              {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300" />
-              ) : (
-                <Moon className="w-4 h-4 text-indigo-400" />
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === 'dark' ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  >
+                    <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  >
+                    <Moon className="w-4 h-4 text-indigo-600 group-hover:-rotate-12 transition-transform" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
 
             {/* GitHub Profile Link */}
@@ -86,7 +105,7 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white px-3 py-2 rounded-xl glass-card hover:border-indigo-500/40 transition-all group"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3 py-2 rounded-xl glass-card hover:border-indigo-500/40 transition-all group"
             >
               <Github className="w-3.5 h-3.5" />
               <span>GitHub</span>
@@ -96,7 +115,7 @@ export const Navbar: React.FC = () => {
             {/* CTA Button */}
             <a
               href="#contact"
-              className="hidden lg:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-sky-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.35)] hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] hover:brightness-110 transition-all"
+              className="hidden lg:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-sky-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.25)] dark:shadow-[0_0_20px_rgba(99,102,241,0.35)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] hover:brightness-105 transition-all"
             >
               <span>Let's Talk</span>
             </a>
@@ -105,7 +124,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
-              className="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-200 hover:text-white"
+              className="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -121,7 +140,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden bg-[#070913]/95 backdrop-blur-xl border-b border-white/[0.08] px-6 py-6 overflow-hidden"
+            className="md:hidden bg-white/95 dark:bg-[#070913]/95 backdrop-blur-xl border-b border-black/[0.08] dark:border-white/[0.08] px-6 py-6 overflow-hidden"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -129,7 +148,7 @@ export const Navbar: React.FC = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-slate-200 hover:text-indigo-400 py-2 border-b border-white/[0.04] transition-colors"
+                  className="text-base font-medium text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 py-2 border-b border-black/[0.04] dark:border-white/[0.04] transition-colors"
                 >
                   {link.name}
                 </a>
@@ -139,7 +158,7 @@ export const Navbar: React.FC = () => {
                   href={PERSONAL_INFO.contacts.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-xl glass-card text-xs font-mono text-slate-200 hover:text-white"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 rounded-xl glass-card text-xs font-mono text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white"
                 >
                   <Github className="w-4 h-4" />
                   <span>GitHub Profile</span>

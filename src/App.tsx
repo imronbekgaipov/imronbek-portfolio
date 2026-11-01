@@ -13,7 +13,7 @@ import { Footer } from './components/Footer';
 export const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <div className="relative min-h-screen bg-[#05060A] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
+      <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05060A] text-slate-900 dark:text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-600 dark:selection:text-indigo-200 transition-colors duration-300">
         {/* Precision Desktop Magnetic Cursor */}
         <CustomCursor />
 

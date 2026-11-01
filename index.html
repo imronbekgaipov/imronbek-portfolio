@@ -15,12 +15,29 @@
 
     <title>Imronbek — Software Engineer & Frontend Developer</title>
 
+    <!-- Prevent flash of incorrect theme on load -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Google Fonts: Syne (Editorial Display), Plus Jakarta Sans (Clean Modern Body), JetBrains Mono (Tech/Code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#05060A] text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200 antialiased overflow-x-hidden">
+  <body class="bg-[#F8FAFC] dark:bg-[#05060A] text-slate-800 dark:text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-600 dark:selection:text-indigo-200 antialiased overflow-x-hidden transition-colors duration-300">
     <!-- Netlify Forms Detection (Static definition for React SPA) -->
     <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
       <input type="hidden" name="form-name" value="contact" />

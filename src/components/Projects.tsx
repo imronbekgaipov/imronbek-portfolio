@@ -18,19 +18,19 @@ export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-28 relative">
       {/* Background ambient light */}
-      <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-              <span className="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold">
+              <span className="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400"></span>
+              <span className="text-xs font-mono uppercase tracking-widest text-sky-600 dark:text-sky-400 font-semibold">
                 03 / Featured Projects
               </span>
             </div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white tracking-tight">
               Selected works & <br />
               <span className="text-gradient-accent">creative experiments.</span>
             </h2>
@@ -44,7 +44,7 @@ export const Projects: React.FC = () => {
                 className={`px-4 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
                   activeTab === tab
                     ? 'bg-gradient-to-r from-indigo-500 to-sky-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.35)]'
-                    : 'glass-card text-slate-400 hover:text-white hover:border-white/20'
+                    : 'glass-card text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20'
                 }`}
               >
                 {tab}
@@ -64,7 +64,7 @@ export const Projects: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4 }}
-                className="group relative rounded-3xl glass-card border-white/[0.08] overflow-hidden flex flex-col hover:border-indigo-500/40 transition-all duration-300 shadow-xl"
+                className="group relative rounded-3xl glass-card border-black/[0.06] dark:border-white/[0.08] overflow-hidden flex flex-col hover:border-indigo-500/40 transition-all duration-300 shadow-lg dark:shadow-xl"
               >
                 {/* Project Image Box with Hover Zoom */}
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
@@ -74,7 +74,7 @@ export const Projects: React.FC = () => {
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C0E17] via-[#0C0E17]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
 
                   {/* Top Bar Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
@@ -105,34 +105,34 @@ export const Projects: React.FC = () => {
                 <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-2">
-                      <h3 className="font-display font-bold text-xl sm:text-2xl text-white group-hover:text-indigo-300 transition-colors">
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
                         {project.title}
                       </h3>
                       <button
                         onClick={() => setSelectedProject(project)}
                         aria-label="Open project info"
-                        className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/[0.06] transition-colors"
+                        className="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.06] transition-colors"
                       >
                         <ArrowUpRight className="w-5 h-5" />
                       </button>
                     </div>
 
-                    <p className="text-xs sm:text-sm font-mono text-cyan-400 mb-3">
+                    <p className="text-xs sm:text-sm font-mono text-cyan-700 dark:text-cyan-400 mb-3 font-medium">
                       {project.tagline}
                     </p>
 
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light line-clamp-3">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-light line-clamp-3">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Tags and Action CTAs */}
-                  <div className="space-y-4 pt-4 border-t border-white/[0.05]">
+                  <div className="space-y-4 pt-4 border-t border-black/[0.06] dark:border-white/[0.05]">
                     <div className="flex flex-wrap gap-1.5">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] text-slate-300 border border-white/[0.06]"
+                          className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-black/[0.06] dark:border-white/[0.06]"
                         >
                           {tag}
                         </span>
@@ -147,7 +147,7 @@ export const Projects: React.FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="View source code on GitHub"
-                            className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-xl glass-card hover:border-white/30 transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-xl glass-card hover:border-black/20 dark:hover:border-white/30 transition-colors"
                           >
                             <Github className="w-3.5 h-3.5" />
                             <span>Code</span>
@@ -159,7 +159,7 @@ export const Projects: React.FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="View Live Demo"
-                            className="inline-flex items-center gap-1.5 text-xs font-mono text-sky-400 hover:text-sky-300 px-3 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:border-sky-500/40 transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs font-mono text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 px-3 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:border-sky-500/40 transition-colors"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>Live Demo</span>
@@ -169,7 +169,7 @@ export const Projects: React.FC = () => {
 
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="text-xs font-mono text-indigo-400 hover:text-indigo-300 font-medium underline underline-offset-4 cursor-pointer"
+                        className="text-xs font-mono text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium underline underline-offset-4 cursor-pointer"
                       >
                         Inspect Stack →
                       </button>
@@ -182,21 +182,21 @@ export const Projects: React.FC = () => {
         </motion.div>
 
         {/* Project Customization Callout */}
-        <div className="mt-12 p-6 rounded-2xl glass-card border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-12 p-6 rounded-2xl glass-card border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-white">Have a new build or prototype to add?</h4>
-              <p className="text-xs text-slate-400 font-light">All projects are configured in <code className="text-sky-300 font-mono">src/data/portfolioData.ts</code> for rapid customization.</p>
+              <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Have a new build or prototype to add?</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-light">All projects are configured in <code className="text-sky-600 dark:text-sky-300 font-mono">src/data/portfolioData.ts</code> for rapid customization.</p>
             </div>
           </div>
           <a
             href="https://github.com/imronbekgaipov"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-mono px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] text-white border border-white/10 transition-colors whitespace-nowrap"
+            className="text-xs font-mono px-4 py-2 rounded-xl bg-slate-200/80 hover:bg-slate-300/80 dark:bg-white/[0.05] dark:hover:bg-white/[0.09] text-slate-900 dark:text-white border border-black/10 dark:border-white/10 transition-colors whitespace-nowrap"
           >
             Explore GitHub Profile ↗
           </a>

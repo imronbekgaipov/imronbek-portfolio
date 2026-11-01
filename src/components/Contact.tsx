@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, 
   Send, 
@@ -9,7 +9,8 @@ import {
   Check, 
   Copy, 
   AlertCircle, 
-  ArrowUpRight 
+  ArrowUpRight,
+  RotateCcw
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
@@ -23,10 +24,18 @@ export const Contact: React.FC = () => {
     message: '',
   });
 
+  const [botField, setBotField] = useState('');
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  const encode = (data: Record<string, string>) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
 
   const validate = (): boolean => {
     const newErrors: Partial<ContactFormData> = {};
@@ -37,7 +46,7 @@ export const Contact: React.FC = () => {
 
     if (!formData.email.trim()) {
       newErrors.email = 'Please enter your email address';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = 'Please provide a valid email format';
     }
 
@@ -55,29 +64,59 @@ export const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setIsSubmitting(true);
-
-    // Simulate reliable submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    // Honeypot check - silently prevent bot spam
+    if (botField) {
       setIsSubmitted(true);
-      
-      // Trigger subtle celebratory confetti
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: { y: 0.8 },
-        colors: ['#6366f1', '#38bdf8', '#a855f7']
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          'bot-field': botField,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+        }),
       });
 
-      // Reset form
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setErrors({});
-    }, 1200);
+      if (response.ok) {
+        setIsSubmitted(true);
+        
+        // Trigger subtle celebratory confetti
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.8 },
+          colors: ['#6366f1', '#38bdf8', '#a855f7']
+        });
+
+        // Reset form inputs
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setBotField('');
+        setErrors({});
+      } else {
+        throw new Error(`Netlify returned status code ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Netlify Form submission error:', error);
+      setSubmitError(
+        'Unable to send message through Netlify Forms right now. Please try again or reach out directly via email.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyEmail = () => {
@@ -211,42 +250,121 @@ export const Contact: React.FC = () => {
           {/* Right Column: Production-Ready Validated Contact Form */}
           <div className="lg:col-span-7">
             <div className="p-6 sm:p-10 rounded-3xl glass-card border-white/[0.1] shadow-2xl relative">
-              <h3 className="font-display font-bold text-2xl text-white mb-2">
-                Send a Message
-              </h3>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-display font-bold text-2xl text-white">
+                  Send a Message
+                </h3>
+                <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                  Netlify Powered
+                </span>
+              </div>
               <p className="text-xs sm:text-sm text-slate-400 font-light mb-8">
-                Fill in the details below. All inputs include live client-side validation.
+                Fill in the details below. All inputs include live client-side validation and secure dispatch.
               </p>
 
-              {isSubmitted && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3"
-                >
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-sm font-semibold text-emerald-300">Message Dispatched!</h4>
-                    <p className="text-xs text-emerald-400/90 font-light">
-                      Thank you for reaching out. I'll get back to you as soon as possible.
-                    </p>
-                  </div>
-                </motion.div>
-              )}
+              {/* Success Notification Banner */}
+              <AnimatePresence>
+                {isSubmitted && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.3 }}
+                    className="mb-6 p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 shrink-0">
+                        <Check className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-semibold text-emerald-300">Message Dispatched Successfully!</h4>
+                        <p className="text-xs text-emerald-400/90 font-light mt-0.5">
+                          Thank you for reaching out. Your submission has been captured and I'll respond promptly.
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 text-xs font-mono transition-colors shrink-0"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Send Another</span>
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              {/* Error Notification Banner */}
+              <AnimatePresence>
+                {submitError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-start justify-between gap-3"
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-xs font-semibold text-red-300">Transmission Alert</h4>
+                        <p className="text-xs text-red-400/90 font-light mt-0.5">
+                          {submitError}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setSubmitError(null)}
+                      className="text-red-400 hover:text-red-200 text-xs font-mono"
+                    >
+                      Dismiss
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true" 
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit} 
+                className="space-y-5" 
+                noValidate
+              >
+                {/* Netlify Form Hidden Identifier */}
+                <input type="hidden" name="form-name" value="contact" />
+
+                {/* Netlify Anti-Spam Honeypot Field */}
+                <p className="hidden" aria-hidden="true">
+                  <label>
+                    Don't fill this out if you're human:{' '}
+                    <input 
+                      name="bot-field" 
+                      tabIndex={-1} 
+                      autoComplete="off" 
+                      value={botField}
+                      onChange={(e) => setBotField(e.target.value)} 
+                    />
+                  </label>
+                </p>
+
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300 block">
+                    <label htmlFor="name-input" className="text-xs font-mono text-slate-300 block">
                       Your Name <span className="text-red-400">*</span>
                     </label>
                     <input
+                      id="name-input"
                       type="text"
+                      name="name"
+                      required
+                      disabled={isSubmitting}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Smith"
-                      className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all ${
+                      className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all disabled:opacity-50 ${
                         errors.name
                           ? 'border-red-500/60 focus:border-red-500'
                           : 'border-white/[0.08] focus:border-indigo-400/60 focus:bg-white/[0.05]'
@@ -261,15 +379,19 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300 block">
+                    <label htmlFor="email-input" className="text-xs font-mono text-slate-300 block">
                       Email Address <span className="text-red-400">*</span>
                     </label>
                     <input
+                      id="email-input"
                       type="email"
+                      name="email"
+                      required
+                      disabled={isSubmitting}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="alex@domain.com"
-                      className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all ${
+                      className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all disabled:opacity-50 ${
                         errors.email
                           ? 'border-red-500/60 focus:border-red-500'
                           : 'border-white/[0.08] focus:border-indigo-400/60 focus:bg-white/[0.05]'
@@ -286,15 +408,19 @@ export const Contact: React.FC = () => {
 
                 {/* Subject */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-300 block">
+                  <label htmlFor="subject-input" className="text-xs font-mono text-slate-300 block">
                     Subject / Discussion Topic <span className="text-red-400">*</span>
                   </label>
                   <input
+                    id="subject-input"
                     type="text"
+                    name="subject"
+                    required
+                    disabled={isSubmitting}
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="Project inquiry, Internship, or Introduction"
-                    className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all ${
+                    className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all disabled:opacity-50 ${
                       errors.subject
                         ? 'border-red-500/60 focus:border-red-500'
                         : 'border-white/[0.08] focus:border-indigo-400/60 focus:bg-white/[0.05]'
@@ -310,15 +436,19 @@ export const Contact: React.FC = () => {
 
                 {/* Message */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-300 block">
+                  <label htmlFor="message-input" className="text-xs font-mono text-slate-300 block">
                     Message <span className="text-red-400">*</span>
                   </label>
                   <textarea
+                    id="message-input"
                     rows={5}
+                    name="message"
+                    required
+                    disabled={isSubmitting}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell me about your idea, opportunity, or timeline..."
-                    className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all resize-none ${
+                    className={`w-full px-4 py-3 rounded-2xl bg-white/[0.03] border text-sm text-white placeholder-slate-500 focus:outline-none transition-all resize-none disabled:opacity-50 ${
                       errors.message
                         ? 'border-red-500/60 focus:border-red-500'
                         : 'border-white/[0.08] focus:border-indigo-400/60 focus:bg-white/[0.05]'
@@ -336,12 +466,12 @@ export const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-sky-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(99,102,241,0.4)] hover:shadow-[0_0_35px_rgba(99,102,241,0.65)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-sky-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(99,102,241,0.4)] hover:shadow-[0_0_35px_rgba(99,102,241,0.65)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
-                    <span className="inline-flex items-center gap-2">
+                    <span className="inline-flex items-center gap-2.5">
                       <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Sending message...</span>
+                      <span>Transmitting message...</span>
                     </span>
                   ) : (
                     <>

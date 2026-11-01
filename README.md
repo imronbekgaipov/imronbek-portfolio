@@ -95,9 +95,9 @@ All personal data, projects, tech stack items, and contact links are centralized
 1. **Personal Information:**
    - Name, headline, educational details, and university information.
 2. **Social & Contact Links:**
-   - Update your LinkedIn URL (`https://linkedin.com/in/...`)
-   - Update your Telegram username (`https://t.me/...`)
-   - Update your primary contact email (`your.email@example.com`)
+   - LinkedIn: `https://www.linkedin.com/in/imronbek-gaipov`
+   - Telegram: `@Imronbek_10` (`https://t.me/Imronbek_10`)
+   - Primary contact email: `imronbekgaipov2008@gmail.com`
 3. **Projects:**
    - Replace the labeled project placeholders with your actual web applications, screenshots, and live demo URLs.
 4. **Timeline Milestones:**

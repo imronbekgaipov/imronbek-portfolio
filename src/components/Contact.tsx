@@ -160,13 +160,18 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
-                <div className="flex items-center gap-2.5 overflow-hidden">
-                  <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span className="font-mono text-xs sm:text-sm text-slate-200 truncate">
+                <a
+                  href={`mailto:${PERSONAL_INFO.contacts.email}`}
+                  className="flex items-center gap-2.5 overflow-hidden group/mail flex-1 min-w-0"
+                  title={`Send email to ${PERSONAL_INFO.contacts.email}`}
+                >
+                  <Mail className="w-4 h-4 text-sky-400 shrink-0 group-hover/mail:text-cyan-300 transition-colors" />
+                  <span className="font-mono text-xs sm:text-sm text-slate-200 hover:text-white hover:underline underline-offset-4 truncate transition-colors">
                     {PERSONAL_INFO.contacts.email}
                   </span>
-                </div>
+                </a>
                 <button
+                  type="button"
                   onClick={handleCopyEmail}
                   className="shrink-0 p-2 rounded-xl glass-card hover:border-white/30 text-slate-300 hover:text-white transition-colors cursor-pointer"
                   title="Copy email address"
@@ -177,7 +182,7 @@ export const Contact: React.FC = () => {
               </div>
 
               <p className="text-[11px] font-mono text-slate-400">
-                [Editable in <code className="text-indigo-300">src/data/portfolioData.ts</code>]
+                Click to open mail app or use copy button
               </p>
             </div>
 
@@ -219,7 +224,7 @@ export const Contact: React.FC = () => {
                     </div>
                     <div>
                       <div className="text-xs font-medium">LinkedIn</div>
-                      <div className="text-[11px] font-mono text-slate-400">[Placeholder Profile]</div>
+                      <div className="text-[11px] font-mono text-slate-400">in/imronbek-gaipov</div>
                     </div>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -238,7 +243,7 @@ export const Contact: React.FC = () => {
                     </div>
                     <div>
                       <div className="text-xs font-medium">Telegram</div>
-                      <div className="text-[11px] font-mono text-slate-400">[Placeholder Handle]</div>
+                      <div className="text-[11px] font-mono text-slate-400">@Imronbek_10</div>
                     </div>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

@@ -12,13 +12,15 @@ export const PERSONAL_INFO = {
   degree: "B.S. in Software Engineering",
   interests: ["React Ecosystem", "JavaScript (ES6+)", "Creative Web Design", "Frontend Engineering", "UI/UX Systems"],
   
-  // Contact & Social Placeholders (Easily update with your details)
+  // Contact & Social Information
   contacts: {
     github: "https://github.com/imronbekgaipov",
     githubUsername: "imronbekgaipov",
-    linkedin: "https://linkedin.com/in/your-profile", // [EDITABLE PLACEHOLDER]
-    telegram: "https://t.me/your-telegram-handle",   // [EDITABLE PLACEHOLDER]
-    email: "your.email@example.com",                  // [EDITABLE PLACEHOLDER]
+    linkedin: "https://www.linkedin.com/in/imronbek-gaipov",
+    linkedinUsername: "in/imronbek-gaipov",
+    telegram: "https://t.me/Imronbek_10",
+    telegramUsername: "@Imronbek_10",
+    email: "imronbekgaipov2008@gmail.com",
   }
 };
 

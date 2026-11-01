@@ -19,20 +19,28 @@ export const CustomCursor: React.FC = () => {
   const dotY = useSpring(cursorY, dotConfig);
 
   useEffect(() => {
-    // Check if touch device
-    if (window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window) {
-      setIsTouchDevice(true);
-      return;
-    }
+    // Check if touch device or screen width is mobile/tablet
+    const checkTouch = () => {
+      const isTouch = window.matchMedia('(pointer: coarse)').matches || 
+                      'ontouchstart' in window || 
+                      window.innerWidth < 1024;
+      setIsTouchDevice(isTouch);
+    };
+
+    checkTouch();
+    window.addEventListener('resize', checkTouch);
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 1024) return;
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseEnter = () => {
+      if (window.innerWidth >= 1024) setIsVisible(true);
+    };
 
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
@@ -53,6 +61,7 @@ export const CustomCursor: React.FC = () => {
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
+      window.removeEventListener('resize', checkTouch);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseleave', handleMouseLeave);
@@ -65,7 +74,7 @@ export const CustomCursor: React.FC = () => {
   if (isTouchDevice || !isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden lg:block">
       {/* Outer Glow Ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full border border-indigo-400/50 bg-indigo-500/10 backdrop-blur-[1px]"

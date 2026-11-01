@@ -33,18 +33,18 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Copyright & Stack credits */}
-          <div className="text-center text-xs text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1.5">
-            <span>&copy; {currentYear} {PERSONAL_INFO.name}. Built with React, TypeScript & Tailwind CSS.</span>
+          <div className="text-center text-xs text-slate-500 dark:text-slate-400 font-mono max-w-xs sm:max-w-none leading-relaxed">
+            <span>&copy; {currentYear} {PERSONAL_INFO.name}. Built with React, TypeScript &amp; Tailwind CSS.</span>
           </div>
 
           {/* Quick links & Back to Top */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <a
               href={PERSONAL_INFO.contacts.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
             <button
               onClick={scrollToTop}
               aria-label="Scroll back to top"
-              className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors cursor-pointer group"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-xl glass-card flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20 transition-colors cursor-pointer group"
               title="Back to Top"
             >
               <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />

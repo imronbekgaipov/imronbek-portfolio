@@ -26,10 +26,13 @@ export const InteractiveCanvas: React.FC = () => {
     let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
     let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const mouse = {
       x: -1000,
       y: -1000,
-      radius: 140,
+      radius: window.innerWidth < 768 ? 90 : 140,
     };
 
     const colors = [
@@ -38,8 +41,11 @@ export const InteractiveCanvas: React.FC = () => {
       'rgba(168, 85, 247, ', // Purple
     ];
 
-    // Determine particle count based on screen width
-    const particleCount = Math.min(Math.floor((width * height) / 14000), 75);
+    // Responsive particle count: lighter on mobile for silky 60fps
+    const isMobile = width < 768;
+    const maxParticles = isMobile ? 24 : 75;
+    const divisor = isMobile ? 32000 : 14000;
+    const particleCount = Math.min(Math.floor((width * height) / divisor) + 8, maxParticles);
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -50,12 +56,12 @@ export const InteractiveCanvas: React.FC = () => {
         y,
         baseX: x,
         baseY: y,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        size: Math.random() * 2 + 1,
-        alpha: Math.random() * 0.6 + 0.2,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.6),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.6),
+        size: Math.random() * 1.8 + 1,
+        alpha: Math.random() * 0.5 + 0.2,
         color: colors[Math.floor(Math.random() * colors.length)],
-        density: Math.random() * 25 + 5,
+        density: Math.random() * 20 + 5,
       });
     }
 
@@ -63,6 +69,14 @@ export const InteractiveCanvas: React.FC = () => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+      }
     };
 
     const handleMouseLeave = () => {
@@ -74,14 +88,19 @@ export const InteractiveCanvas: React.FC = () => {
       if (!canvas) return;
       width = canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
       height = canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
+      mouse.radius = width < 768 ? 90 : 140;
     };
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     canvas.addEventListener('mouseleave', handleMouseLeave);
+    canvas.addEventListener('touchend', handleMouseLeave);
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
+
+      const maxDist = isMobile ? 95 : 120;
 
       // Connect nearby particles
       for (let a = 0; a < particles.length; a++) {
@@ -89,10 +108,9 @@ export const InteractiveCanvas: React.FC = () => {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 120;
 
           if (dist < maxDist) {
-            const lineAlpha = (1 - dist / maxDist) * 0.18;
+            const lineAlpha = (1 - dist / maxDist) * (isMobile ? 0.14 : 0.18);
             ctx.beginPath();
             ctx.strokeStyle = `rgba(99, 102, 241, ${lineAlpha})`;
             ctx.lineWidth = 1;
@@ -107,29 +125,31 @@ export const InteractiveCanvas: React.FC = () => {
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Move
-        p.x += p.vx;
-        p.y += p.vy;
+        if (!prefersReducedMotion) {
+          // Move
+          p.x += p.vx;
+          p.y += p.vy;
 
-        // Bounce on boundaries
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+          // Bounce on boundaries
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Mouse interaction (Repulsion / Subtle gravitation)
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+          // Touch/mouse interaction
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < mouse.radius) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
-          const maxDistance = mouse.radius;
-          const force = (maxDistance - distance) / maxDistance;
-          const directionX = forceDirectionX * force * p.density * 0.4;
-          const directionY = forceDirectionY * force * p.density * 0.4;
+          if (distance < mouse.radius) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const maxDistance = mouse.radius;
+            const force = (maxDistance - distance) / maxDistance;
+            const directionX = forceDirectionX * force * p.density * 0.35;
+            const directionY = forceDirectionY * force * p.density * 0.35;
 
-          p.x -= directionX;
-          p.y -= directionY;
+            p.x -= directionX;
+            p.y -= directionY;
+          }
         }
 
         // Draw particle
@@ -137,12 +157,14 @@ export const InteractiveCanvas: React.FC = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `${p.color}${p.alpha})`;
         ctx.shadowColor = 'rgba(56, 189, 248, 0.4)';
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = isMobile ? 4 : 8;
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0;
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     render();
@@ -151,14 +173,18 @@ export const InteractiveCanvas: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
-      if (canvas) canvas.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchmove', handleTouchMove);
+      if (canvas) {
+        canvas.removeEventListener('mouseleave', handleMouseLeave);
+        canvas.removeEventListener('touchend', handleMouseLeave);
+      }
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-80"
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-70 dark:opacity-80"
     />
   );
 };

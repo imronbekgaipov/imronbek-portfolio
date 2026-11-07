@@ -86,7 +86,8 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Theme Toggle Button */}
             <button
-              onClick={toggleTheme}
+              onClick={(e) => toggleTheme(e)}
+              data-theme-toggle="true"
               aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-indigo-500/40 transition-colors cursor-pointer group overflow-hidden"

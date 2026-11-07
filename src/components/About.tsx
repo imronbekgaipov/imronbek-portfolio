@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Compass, Sparkles, Terminal, BookOpen, User } from 'lucide-react';
+import { GraduationCap, Compass, Sparkles, Terminal, BookOpen } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import profilePhoto from '../assets/imronbek.jpg';
 
 export const About: React.FC = () => {
   return (
@@ -35,14 +36,22 @@ export const About: React.FC = () => {
           >
             <div className="relative rounded-3xl overflow-hidden glass-card p-2.5 sm:p-3 border-black/[0.06] dark:border-white/[0.1] shadow-xl dark:shadow-2xl group">
               {/* Image Frame Container */}
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200/90 dark:from-[#131728] dark:to-[#0A0D17] border border-black/[0.06] dark:border-white/[0.08] flex flex-col items-center justify-center p-5 sm:p-6 text-center">
-                {/* Visual Avatar / Portrait Representation */}
-                <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-indigo-500/20 via-sky-500/15 to-purple-500/20 dark:from-indigo-500/30 dark:via-sky-500/20 dark:to-purple-500/30 border border-black/10 dark:border-white/20 flex items-center justify-center mb-4 sm:mb-6 shadow-md dark:shadow-[0_0_35px_rgba(99,102,241,0.25)] group-hover:scale-105 transition-transform duration-500">
-                  <User className="w-12 h-12 sm:w-16 sm:h-16 text-indigo-600 dark:text-indigo-300 stroke-[1.2]" />
-                  <div className="absolute inset-0 rounded-full border border-sky-400/40 animate-ping opacity-25 pointer-events-none" />
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-b from-slate-100 to-slate-200/90 dark:from-[#131728] dark:to-[#0A0D17] border border-black/[0.06] dark:border-white/[0.08] flex flex-col items-center justify-center p-4 sm:p-6 pb-20 sm:pb-24 text-center">
+                {/* Professional Portrait Presentation (16-20px rounded corners) */}
+                <div className="relative w-32 h-40 min-[360px]:w-36 min-[360px]:h-44 sm:w-44 sm:h-52 md:w-48 md:h-56 rounded-[18px] overflow-hidden border-2 border-indigo-500/20 dark:border-indigo-500/40 shadow-lg dark:shadow-[0_0_35px_rgba(99,102,241,0.25)] mb-3 sm:mb-4 group-hover:scale-[1.03] group-hover:border-indigo-500/60 transition-all duration-500 bg-slate-200 dark:bg-slate-800 shrink-0">
+                  <img
+                    src={profilePhoto}
+                    alt={`${PERSONAL_INFO.name} - Software Engineering Student`}
+                    className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
+                    loading="eager"
+                  />
+                  {/* Subtle gradient sheen overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                  {/* Subtle inner highlight border */}
+                  <div className="absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/20 dark:ring-white/10 pointer-events-none" />
                 </div>
 
-                <div className="space-y-1.5 sm:space-y-2">
+                <div className="space-y-1 sm:space-y-1.5">
                   <h3 className="font-display font-bold text-lg sm:text-xl text-slate-900 dark:text-white tracking-wide">
                     {PERSONAL_INFO.name}
                   </h3>
@@ -53,15 +62,10 @@ export const About: React.FC = () => {
                     Fergana State Technical University, Uzbekistan
                   </p>
                 </div>
-
-                {/* Editable Photo Notice */}
-                <div className="mt-4 sm:mt-6 px-3 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] text-[10px] sm:text-[11px] font-mono text-slate-600 dark:text-slate-400">
-                  [Portrait Placeholder: Replace with your photo]
-                </div>
               </div>
 
               {/* Status pill overlay */}
-              <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 p-3 sm:p-4 rounded-xl glass-card border-black/[0.08] dark:border-white/[0.12] flex items-center justify-between shadow-sm">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-3 sm:p-4 rounded-xl glass-card border-black/[0.08] dark:border-white/[0.12] flex items-center justify-between shadow-sm">
                 <div>
                   <div className="text-[9px] sm:text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase">Focus</div>
                   <div className="text-[11px] sm:text-xs font-semibold text-slate-900 dark:text-white">Frontend & Software Systems</div>

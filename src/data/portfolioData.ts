@@ -11,6 +11,7 @@ export const PERSONAL_INFO = {
   university: "Fergana State Technical University",
   degree: "B.S. in Software Engineering",
   interests: ["React Ecosystem", "JavaScript (ES6+)", "Creative Web Design", "Frontend Engineering", "UI/UX Systems"],
+  avatar: "/images/imronbek.jpg",
   
   // Contact & Social Information
   contacts: {

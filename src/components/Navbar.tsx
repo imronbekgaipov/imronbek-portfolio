@@ -55,11 +55,21 @@ export const Navbar: React.FC = () => {
           <a
             href="#hero"
             onClick={handleLinkClick}
-            className="group flex items-center gap-2 text-lg sm:text-xl font-display font-extrabold tracking-tight shrink-0"
+            className="group flex items-center gap-2 sm:gap-2.5 text-lg sm:text-xl font-display font-extrabold tracking-tight shrink-0"
           >
-            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-indigo-500 via-sky-400 to-indigo-600 flex items-center justify-center text-white text-xs sm:text-sm shadow-[0_0_15px_rgba(99,102,241,0.5)] group-hover:scale-105 transition-transform">
-              ⚡
-            </span>
+            {/* Theme-Adaptive IG Monogram Brand Logo (Replaces lightning bolt) */}
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 group-hover:scale-105 transition-transform duration-300">
+              <img
+                src="/favicon-light.svg"
+                alt="IG Logo"
+                className="w-full h-full object-contain dark:hidden rounded-xl"
+              />
+              <img
+                src="/favicon-dark.svg"
+                alt="IG Logo"
+                className="w-full h-full object-contain hidden dark:block rounded-xl"
+              />
+            </div>
             <span className="text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
               {PERSONAL_INFO.name}
             </span>

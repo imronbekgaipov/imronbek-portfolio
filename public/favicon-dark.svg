@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="darkBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#14172B"/>
+      <stop offset="100%" stop-color="#070811"/>
+    </linearGradient>
+
+    <!-- Background Subtle Aura Glows -->
+    <radialGradient id="purpleAura" cx="48%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#C026D3" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="cyanAura" cx="75%" cy="75%" r="50%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.22"/>
+      <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Orbit Top Gradient -->
+    <linearGradient id="topOrbitGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#D946EF"/>
+      <stop offset="55%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+
+    <!-- Orbit Bottom Gradient -->
+    <linearGradient id="bottomOrbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333EA"/>
+      <stop offset="35%" stop-color="#3B82F6"/>
+      <stop offset="70%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#00F0FF"/>
+    </linearGradient>
+
+    <!-- Monogram I Gradient -->
+    <linearGradient id="iDarkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#FFFFFF"/>
+      <stop offset="85%" stop-color="#E879F9"/>
+      <stop offset="100%" stop-color="#C026D3"/>
+    </linearGradient>
+
+    <!-- Soft Glow Filter for Orbit & Star -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="starGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Card Base -->
+  <rect x="36" y="36" width="440" height="440" rx="116" ry="116" fill="url(#darkBg)" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+  <rect x="36" y="36" width="440" height="440" rx="116" ry="116" fill="url(#purpleAura)"/>
+  <rect x="36" y="36" width="440" height="440" rx="116" ry="116" fill="url(#cyanAura)"/>
+
+  <!-- Orbit Top Arc (Purple to Lavender) -->
+  <path d="M 124 210 C 136 142 190 98 258 98 C 304 98 344 116 366 142"
+        fill="none" stroke="url(#topOrbitGrad)" stroke-width="15" stroke-linecap="round" filter="url(#neonGlow)"/>
+
+  <!-- Orbit Bottom Arc & Comet Tail (Violet to Electric Cyan) -->
+  <path d="
+    M 132 308
+    C 158 370 212 404 274 404
+    C 334 404 382 370 398 316
+    C 403 300 405 284 406 266
+    C 404 286 397 312 376 338
+    C 350 370 310 388 266 388
+    C 214 388 168 358 142 320
+    Z
+  " fill="url(#bottomOrbitGrad)" filter="url(#neonGlow)"/>
+
+  <!-- 4-Point Diamond Sparkle -->
+  <path d="
+    M 382 136
+    Q 382 172 418 172
+    Q 382 172 382 208
+    Q 382 172 346 172
+    Q 382 172 382 136
+    Z
+  " fill="#FFFFFF" filter="url(#starGlow)"/>
+
+  <!-- Center Monogram 'IG' with Shear Matrix Transform -->
+  <g transform="matrix(1 0 -0.32 1 106 0)">
+    <!-- Letter 'I' -->
+    <path d="
+      M 148 194
+      L 188 194
+      Q 192 194 192 198
+      L 192 328
+      Q 192 332 188 332
+      L 148 332
+      Q 144 332 144 328
+      L 144 198
+      Q 144 194 148 194
+      Z
+    " fill="url(#iDarkGrad)"/>
+
+    <!-- Letter 'G' -->
+    <path fill-rule="evenodd" d="
+      M 230 194
+      L 348 194
+      Q 352 194 352 198
+      L 352 230
+      Q 352 234 348 234
+      L 262 234
+      Q 256 234 256 240
+      L 256 286
+      Q 256 292 262 292
+      L 310 292
+      L 310 270
+      Q 310 266 314 266
+      L 348 266
+      Q 352 266 352 270
+      L 352 328
+      Q 352 332 346 332
+      L 230 332
+      Q 216 332 216 318
+      L 216 208
+      Q 216 194 230 194
+      Z
+    " fill="#FFFFFF"/>
+  </g>
+</svg>

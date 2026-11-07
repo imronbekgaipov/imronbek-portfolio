@@ -2,7 +2,7 @@
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="/favicon-dark.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Imronbek — Aspiring Software Engineer & Frontend Developer. Exploring React, JavaScript, and modern creative web architecture." />
     <meta name="keywords" content="Imronbek, Software Engineer, Frontend Developer, React, JavaScript, Portfolio, Fergana State Technical University" />
@@ -15,7 +15,7 @@
 
     <title>Imronbek — Software Engineer & Frontend Developer</title>
 
-    <!-- Prevent flash of incorrect theme on load -->
+    <!-- Prevent flash of incorrect theme & favicon on load -->
     <script>
       (function() {
         try {
@@ -27,6 +27,10 @@
           } else {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
+          }
+          var favicon = document.getElementById('favicon');
+          if (favicon) {
+            favicon.setAttribute('href', theme === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg');
           }
         } catch (e) {}
       })();

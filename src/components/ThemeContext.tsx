@@ -29,6 +29,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const isTransitioningRef = useRef(false);
 
+  const updateFavicon = (targetTheme: Theme) => {
+    const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
+    if (favicon) {
+      const href = targetTheme === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg';
+      favicon.href = href;
+      favicon.setAttribute('href', href);
+    }
+  };
+
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
@@ -39,6 +48,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       root.classList.remove('dark');
     }
     localStorage.setItem('portfolio-theme', theme);
+    updateFavicon(theme);
   }, [theme]);
 
   const toggleTheme = async (event?: ToggleThemeEvent) => {
@@ -46,6 +56,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (isTransitioningRef.current) return;
 
     const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark';
+
+    // Immediately update browser tab favicon
+    updateFavicon(nextTheme);
 
     // Respect prefers-reduced-motion accessibility setting
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

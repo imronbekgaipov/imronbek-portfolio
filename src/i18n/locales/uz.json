@@ -1,0 +1,280 @@
+{
+  "nav": {
+    "about": "Men haqimda",
+    "techStack": "Texnologiyalar",
+    "projects": "Loyihalar",
+    "journey": "Yo'lim",
+    "contact": "Bog'lanish",
+    "letsTalk": "Gaplashamiz",
+    "github": "GitHub",
+    "githubHandle": "GitHub: @imronbekgaipov",
+    "openMenu": "Navigatsiya menyusini ochish",
+    "closeMenu": "Navigatsiya menyusini yopish",
+    "switchToLight": "Yorqin rejimga o'tish",
+    "switchToDark": "Qorong'i rejimga o'tish"
+  },
+  "hero": {
+    "availabilityBadge": "Amaliyot va hamkorlik uchun ochiqman",
+    "location": "O'zbekiston",
+    "greeting": "Salom, men",
+    "tagline": "Kod va ijodkorlik orqali raqamli tajribalar yarataman.",
+    "subtitle": "Farg'ona davlat texnika universitetining dasturiy ta'minot muhandisligi talabasiman. Zamonaviy frontend arxitekturasi, React va toza interfeys tizimlariga ixtisoslashaman.",
+    "exploreWork": "Ishlarimni ko'ring",
+    "letsTalk": "Gaplashamiz",
+    "scroll": "Aylantirish"
+  },
+  "about": {
+    "sectionTag": "01 / Men haqimda",
+    "heading": "Interfeylarni aniqlik va qiziquvchanlik bilan loyihalash.",
+    "role": "Dasturiy ta'minot muhandisligi talabasi",
+    "university": "Farg'ona davlat texnika universiteti, O'zbekiston",
+    "focusLabel": "Yo'nalish",
+    "focusValue": "Frontend va dasturiy tizimlar",
+    "story1": "Men Farg'ona davlat texnika universitetining dasturiy ta'minot muhandisligi talabasi bo'lib, zamonaviy va intuitiv raqamli interfeylarni yaratishga chuqur ishtiyoqliman. Mening sayohatim asosiy veb texnologiyalardan boshlandi va asta-sekin React, TypeScript va Tailwind CSS bilan ishlab chiqarish darajasidagi ilovalar yaratishga aylandi.",
+    "story2": "O'quv dasturidan tashqari, men frontend ekotizimini o'rganishga ko'p vaqt sarflayman — dizayn tizimlari, komponent arxitektura naqshlari va Framer Motion kabi animatsiya freymvorklarini o'rganaман. Mening e'tiqodimcha, ajoyib dasturiy ta'minot texnik aniqlik va o'ylangan dizayn kesishmasida joylashgan.",
+    "story3": "Mening maqsadim — odamlar chindan ham foydalanishdan zavqlanadigan mazmunli dasturiy mahsulotlarga hissa qo'shish, muhandislik chuqurligini kuchli vizual sezgi bilan birlashtirish.",
+    "card1Title": "Akademik ta'lim",
+    "card1Desc": "Farg'ona davlat texnika universitetida dasturiy ta'minot muhandisligi o'quv dasturi.",
+    "card2Title": "Frontend ishtiyoqi",
+    "card2Desc": "Chiroyli, samarali va qulay veb interfeylarni yaratishga bag'ishlangan.",
+    "card3Title": "Ijodiy yo'nalish",
+    "card3Desc": "Dizayn tizimlari, harakat dizayni va UI arxitekturasi meni chuqur qiziqtiradi.",
+    "card4Title": "Uzluksiz rivojlanish",
+    "card4Desc": "Yangi freymvorklar, vositalar va muhandislik tamoyillarini doimo o'rganaman."
+  },
+  "techStack": {
+    "sectionTag": "02 / Texnik stak",
+    "heading": "Qo'llaydigan vositalar va texnologiyalar.",
+    "subtitle": "Akademik va shaxsiy loyihalarda faol o'rganiladigan va qo'llaniladigan asosiy texnologiyalar.",
+    "filterAll": "Barchasi",
+    "filterCore": "Asosiy va tillar",
+    "filterFrameworks": "Freymvorklar va kutubxonalar",
+    "filterStyling": "Stil va animatsiya",
+    "filterWorkflow": "Ish jarayoni va vositalar",
+    "active": "Faol",
+    "bottomNote": "💡 Barcha texnologiyalar Farg'ona davlat texnika universitetidagi akademik va shaxsiy amaliyotni aks ettiradi.",
+    "levels": {
+      "Proficient": "Malakali",
+      "Learning & Building": "O'rganmoqda va qurmoqda",
+      "Exploring": "O'rganmoqda"
+    },
+    "items": {
+      "HTML5": {
+        "description": "Semantik hujjat arxitekturasi, mavjudlik standartlari (a11y) va zamonaviy SEO asoslari.",
+        "category": "Asosiy va tillar"
+      },
+      "CSS3 / Modern CSS": {
+        "description": "Moslashuvchan tartiblar, Flexbox, Grid, maxsus xususiyatlar va silliq mikro-interaksiyalar.",
+        "category": "Stil va animatsiya"
+      },
+      "JavaScript (ES6+)": {
+        "description": "Zamonaviy asinxron JavaScript, DOM manipulyatsiyasi, closures, promise va funksional naqshlar.",
+        "category": "Asosiy va tillar"
+      },
+      "React": {
+        "description": "Komponent arxitekturasi, deklarativ UI holati, maxsus hooklar va zamonaviy frontend ekosistemalari.",
+        "category": "Freymvorklar va kutubxonalar"
+      },
+      "TypeScript": {
+        "description": "Statik tip tizimlari, qattiq interfeyslar, generiklar va tip-xavfsiz komponent ishlanmasi.",
+        "category": "Asosiy va tillar"
+      },
+      "Tailwind CSS": {
+        "description": "Utility-first dizayn tizimlari, maxsus mavzu konfiguratsiyasi va moslashuvchan tartib mahorati.",
+        "category": "Stil va animatsiya"
+      },
+      "Git": {
+        "description": "Versiyalarni boshqarish, tarmoqlash ish jarayonlari, commitlar, rebase va birlashtirish nizolarini hal qilish.",
+        "category": "Ish jarayoni va vositalar"
+      },
+      "GitHub & GitHub CLI": {
+        "description": "Repozitoriyani boshqarish, avtomatlashtirilgan masofaviy push, CLI vositasi (`gh`) va hamkorlik ish jarayonlari.",
+        "category": "Ish jarayoni va vositalar"
+      },
+      "Vite": {
+        "description": "Keyingi avlod frontend vositasi, tezkor HMR va optimallashtirilgan ishlab chiqarish to'plami.",
+        "category": "Ish jarayoni va vositalar"
+      },
+      "Framer Motion": {
+        "description": "Deklarativ sahifa o'tishlari, harakat animatsiyalari, bahor fizikasi va aylantirish bilan ochilgan ko'rinishlar.",
+        "category": "Stil va animatsiya"
+      }
+    }
+  },
+  "projects": {
+    "sectionTag": "03 / Tanlangan loyihalar",
+    "heading": "Tanlangan ishlar va ijodiy tajribalar.",
+    "filterAll": "Barchasi",
+    "filterFrontend": "Frontend",
+    "filterWebApps": "Veb ilovalar",
+    "filterExperiments": "Tajribalar",
+    "viewDetails": "Batafsil",
+    "code": "Kod",
+    "demo": "Demo",
+    "inspectStack": "Stakni ko'rish →",
+    "calloutText": "Yangi loyiha yoki prototipni qo'shmoqchimisiz?",
+    "calloutSub": "Barcha loyihalar tezkor sozlash uchun src/data/portfolioData.ts da sozlangan.",
+    "exploreGithub": "GitHub profilini ko'rish ↗",
+    "statusLabel": "Holat:",
+    "statuses": {
+      "Completed": "Yakunlangan",
+      "In Progress": "Jarayonda",
+      "Concept Prototype": "Kontsept prototip"
+    },
+    "items": {
+      "project-1": {
+        "title": "Shaxsiy dasturchi portfoliosi",
+        "tagline": "Agentlik estetikasi va 3D vizuallar bilan interaktiv portfolio",
+        "description": "React, TypeScript, Tailwind CSS va Framer Motion yordamida qurilgan ishlab chiqarish darajasidagi, yuqori moslashuvchan dasturchi portfoliosi. Interaktiv zarrachalar kanvasi, shisha efektli UI, dinamik mavzu rejimlari va GitHub avtomatsiyasi xususiyatlari mavjud.",
+        "features": [
+          "Maxsus interaktiv matematik/fizika zarrachalar kanvasi qahramoni",
+          "Syne va Plus Jakarta Sans bilan editorial tipografiya",
+          "Interaktiv texnologiya va sayohat o'rganish vaqt chiziqlari",
+          "Simulyatsiya qilingan yuborilish qayta aloqasi bilan tasdiqlangan aloqa formasi",
+          "375px mobil ekrangacha to'liq moslashuvchan"
+        ],
+        "architecture": "Modulli holat, qattiq TypeScript interfeyslari va Framer Motion tartib o'tishlari bilan komponent asosidagi React 18 arxitekturasi.",
+        "placeholderNote": "Faol jonli repozitoriy. Kontentni va skrinshootlarni istalgan vaqtda sozlashingiz mumkin!"
+      },
+      "project-2": {
+        "title": "Zamonaviy veb ilova (To'ldiruvchi)",
+        "tagline": "[Tahrirlash mumkin: Loyiha sarlavhasini almashtiring]",
+        "description": "Kelgusi dasturiy loyihangiz yoki frontend qurilmangiz uchun to'ldiruvchi. React komponentlaringizni, holat boshqarish tajribalarini, API integratsiyalarini yoki veb yordam dasturlarini bu yerda namoyish eting.",
+        "features": [
+          "[To'ldiruvchi 1]: Moslashuvchan interfeys dizayni",
+          "[To'ldiruvchi 2]: Real vaqtdagi foydalanuvchi interaksiyalari",
+          "[To'ldiruvchi 3]: Toza ma'lumot olish va holat sinxronizatsiyasi"
+        ],
+        "architecture": "Maxsus hooklar va qayta foydalanish mumkin bo'lgan UI komponentlari bilan modulli frontend tuzilmasi.",
+        "placeholderNote": "Bu kartani keyingi loyihangiz bilan almashtiring (masalan, Vazifalar menejeri, E-Commerce UI, Ob-havo ilovasi)."
+      },
+      "project-3": {
+        "title": "Interaktiv UI komponent tizimi (To'ldiruvchi)",
+        "tagline": "[Tahrirlash mumkin: Loyiha sarlavhasini almashtiring]",
+        "description": "Zamonaviy CSS va JavaScript yordamida yaratilgan maxsus interaktiv UI elementlari, qulay modal muloqot oynalari, silliq mikro-interaksiyalar va moslashuvchan tartib naqshlarini namoyish etish.",
+        "features": [
+          "[To'ldiruvchi 1]: Qulay klaviatura navigatsiyasi",
+          "[To'ldiruvchi 2]: Suyuq animatsiya va o'tishlar",
+          "[To'ldiruvchi 3]: Brauzerlararo muvofiqlik"
+        ],
+        "architecture": "CSS maxsus xususiyatlari, semantik belgilash va yengil JavaScript interaksiya ishlovchilari.",
+        "placeholderNote": "UI kutubxonangizni yoki CSS tajribangizni bu yerga qo'shing."
+      },
+      "project-4": {
+        "title": "Algoritm va ma'lumotlar strukturasi laboratoriyasi (To'ldiruvchi)",
+        "tagline": "[Tahrirlash mumkin: Universitet kurs loyihasini almashtiring]",
+        "description": "Universitet o'qishida ishlab chiqilgan asosiy dasturiy ta'minot muhandisligi algoritmlari, ma'lumotlar strukturalari va hisoblash tafakkurini vizual o'rganish va amalga oshirish.",
+        "features": [
+          "[To'ldiruvchi 1]: Algoritmni bosqichma-bosqich vizualizatsiya qilish",
+          "[To'ldiruvchi 2]: Murakkablik tahlili taqqoslashlari",
+          "[To'ldiruvchi 3]: Toza hujjatlar va test holatlari"
+        ],
+        "architecture": "Ta'lim ko'rsatmasi va samaradorlik uchun yozilgan toza, algoritmik kod.",
+        "placeholderNote": "Universitet kurs ishingizni yoki GitHub o'rganish repozitoriyangizni ulash uchun ajoyib joy."
+      }
+    }
+  },
+  "modal": {
+    "architectureLabel": "Arxitektura va stak",
+    "featuresLabel": "Asosiy xususiyatlar",
+    "technologiesLabel": "Texnologiyalar",
+    "githubRepo": "GitHub repozitoriyasi",
+    "liveDemo": "Jonli demo",
+    "notePrefix": "📌 Eslatma:",
+    "close": "Loyiha modalini yopish"
+  },
+  "journey": {
+    "sectionTag": "04 / Mening yo'lim",
+    "heading": "Ta'lim va dasturlash sayohati.",
+    "subtitle": "Dasturiy ta'minot muhandisligi va veb texnologiyalardagi muhim bosqichlar va davom etayotgan o'sish.",
+    "types": {
+      "Education": "Ta'lim",
+      "Milestone": "Muhim bosqich",
+      "Exploration": "O'rganish"
+    },
+    "statuses": {
+      "Current": "Hozirgi",
+      "Completed": "Yakunlangan",
+      "Upcoming": "Kelgusi"
+    },
+    "items": {
+      "0": {
+        "title": "Dasturiy ta'minot muhandisligi talabasi",
+        "institution": "Farg'ona davlat texnika universiteti",
+        "location": "Farg'ona, O'zbekiston",
+        "description": "Informatika, dasturiy ta'minot muhandisligi tamoyillari, algoritmlar va zamonaviy frontend ilovalar ishlanmasidagi asosiy bilimlarni chuqurlashtirish.",
+        "highlights": [
+          "Dasturiy ta'minot muhandisligi o'quv dasturida ixtisoslashish",
+          "Dasturiy dizayn, mantiq va ma'lumotlar arxitekturalarini o'rganish",
+          "React va JavaScript ekotizimlarida faol mustaqil o'quv"
+        ]
+      },
+      "1": {
+        "title": "Frontend ishlanmani o'rganish",
+        "institution": "Mustaqil amaliyot va jamoaviy o'quv",
+        "location": "Mustaqil",
+        "description": "HTML5 semantikasi, zamonaviy CSS tartib texnikasi (Flexbox, Grid) va asosiy JavaScript asoslarini o'zlashtirish orqali amaliy dasturlash sayohatini boshlash.",
+        "highlights": [
+          "Moslashuvchan veb tartiblar va interfeys prototiplari yaratish",
+          "Versiyani boshqarish va loyihani kuzatish uchun Git va GitHub qabul qilish",
+          "Zamonaviy React komponent arxitekturasiga o'tish"
+        ]
+      },
+      "2": {
+        "title": "Professional muhandislik va fullstack o'sish",
+        "institution": "Kelajak maqsad [Tahrirlash mumkin]",
+        "location": "Global / Masofaviy",
+        "description": "Ta'sirli dasturiy mahsulotlarga hissa qo'shish, muhandislik jamoalari bilan hamkorlik qilish va fullstack ishlanma va kengaytiriladigan tizimlarga mutaxassislikni kengaytirishga intilish.",
+        "highlights": [
+          "Kichik dasturchi rollari va muhandislik amaliyotlariga ochiqman",
+          "GitHubda ishlab chiqarish darajasidagi ochiq manba loyihalarini yaratish",
+          "TypeScript, Next.js va backend integratsiyasini o'zlashtirish"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "sectionTag": "05 / Bog'lanish",
+    "heading": "Birgalikda ajoyib narsa yaratamiz.",
+    "description": "Men amaliyot imkoniyatlariga, hamkorlik loyihalariga va mazmunli muhandislik suhbatlariga ochiqman. Fikringiz, savolingiz yoki taklifingiz bo'lsa — sizdan eshitishdan xursand bo'laman.",
+    "directContact": "To'g'ridan-to'g'ri aloqa",
+    "quickResponse": "Tez javob",
+    "emailHint": "Pochta ilovasini ochish yoki nusxalash tugmasidan foydalaning",
+    "copyEmail": "Elektron pochta manzilini nusxalash",
+    "findMeOn": "Meni toping",
+    "formTitle": "Xabar yuborish",
+    "netlifyPowered": "Netlify orqali",
+    "formSubtitle": "Quyidagi formaga xabar qoldiring, 24–48 soat ichida javob beraman.",
+    "nameLabel": "Ismingiz *",
+    "emailLabel": "Elektron pochta manzili *",
+    "subjectLabel": "Mavzu / Muhokama mavzusi *",
+    "messageLabel": "Xabar *",
+    "namePlaceholder": "masalan, Ali Valiyev",
+    "emailPlaceholder": "ali@domen.com",
+    "subjectPlaceholder": "Loyiha so'rovi, Amaliyot yoki Tanishuv",
+    "messagePlaceholder": "Fikringiz, imkoniyatingiz yoki muddatingiz haqida yozing...",
+    "submitBtn": "Xabar yuborish",
+    "submittingBtn": "Xabar yuborilmoqda...",
+    "sendAnother": "Yana yuborish",
+    "successTitle": "Xabar muvaffaqiyatli yuborildi!",
+    "successDesc": "Murojaat qilganingiz uchun rahmat. Xabaringizni ko'rib chiqib, 24–48 soat ichida javob beraman.",
+    "errorTitle": "Uzatish xatosi",
+    "errorDismiss": "Yopish",
+    "netlifyError": "Netlify Forms orqali xabar yuborib bo'lmadi. Iltimos, to'g'ridan-to'g'ri elektron pochta orqali murojaat qiling.",
+    "validation": {
+      "nameRequired": "Iltimos, ismingizni kiriting",
+      "emailRequired": "Iltimos, elektron pochta manzilingizni kiriting",
+      "emailInvalid": "Iltimos, to'g'ri elektron pochta formatini kiriting",
+      "subjectRequired": "Iltimos, mavzu yoki maqsadni kiriting",
+      "messageRequired": "Iltimos, qisqa xabar yozing",
+      "messageTooShort": "Xabar kamida 10 ta belgi bo'lishi kerak"
+    }
+  },
+  "footer": {
+    "devPortfolio": "/ Dasturchi portfoliosi",
+    "university": "Dasturiy ta'minot muhandisligi • Farg'ona davlat texnika universiteti",
+    "copyright": "© {{year}} {{name}}. React, TypeScript va Tailwind CSS bilan yaratilgan.",
+    "backToTop": "Sahifa boshiga qaytish",
+    "githubProfile": "GitHub profili"
+  }
+}

@@ -1,19 +1,47 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight, Sparkles, Eye } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
 
 export const Projects: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeTab, setActiveTab] = useState<string>('All');
 
-  const filterTabs = ['All', 'Frontend', 'Web Apps', 'Experiments'];
+  // Data values for filtering (must match portfolioData Project.category)
+  const DATA_TABS = ['All', 'Frontend', 'Web Apps', 'Experiments'];
+
+  const TAB_LABELS: Record<string, string> = {
+    'All': t('projects.filterAll'),
+    'Frontend': t('projects.filterFrontend'),
+    'Web Apps': t('projects.filterWebApps'),
+    'Experiments': t('projects.filterExperiments'),
+  };
 
   const filteredProjects = activeTab === 'All'
     ? PROJECTS
     : PROJECTS.filter(p => p.category === activeTab);
+
+  const getTranslatedProject = (project: Project) => ({
+    title: t(`projects.items.${project.id}.title`),
+    tagline: t(`projects.items.${project.id}.tagline`),
+    description: t(`projects.items.${project.id}.description`),
+    features: t(`projects.items.${project.id}.features`, { returnObjects: true }) as string[],
+    architecture: t(`projects.items.${project.id}.architecture`),
+    placeholderNote: project.placeholderNote ? t(`projects.items.${project.id}.placeholderNote`) : undefined,
+  });
+
+  const getTranslatedProjectForModal = (project: Project): Project => ({
+    ...project,
+    ...getTranslatedProject(project),
+  });
+
+  const getStatusLabel = (status: Project['status']) => {
+    return t(`projects.statuses.${status}`);
+  };
 
   return (
     <section id="projects" className="py-16 sm:py-24 lg:py-28 relative">
@@ -27,17 +55,16 @@ export const Projects: React.FC = () => {
             <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400"></span>
               <span className="text-xs font-mono uppercase tracking-widest text-sky-600 dark:text-sky-400 font-semibold">
-                03 / Featured Projects
+                {t('projects.sectionTag')}
               </span>
             </div>
             <h2 className="font-display font-bold text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white tracking-tight">
-              Selected works & <br />
-              <span className="text-gradient-accent">creative experiments.</span>
+              {t('projects.heading')}
             </h2>
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto pb-2 mt-4 md:mt-0 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-            {filterTabs.map((tab) => (
+            {DATA_TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -47,137 +74,140 @@ export const Projects: React.FC = () => {
                     : 'glass-card text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20'
                 }`}
               >
-                {tab}
+                {TAB_LABELS[tab]}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Project Gallery Grid - Single column on mobile, 2 columns on tablet/desktop */}
+        {/* Project Gallery Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <motion.article
-                layout
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.4 }}
-                className="group relative rounded-3xl glass-card border-black/[0.06] dark:border-white/[0.08] overflow-hidden flex flex-col hover:border-indigo-500/40 transition-all duration-300 shadow-lg dark:shadow-xl"
-              >
-                {/* Project Image Box with Hover Zoom */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+            {filteredProjects.map((project) => {
+              const translated = getTranslatedProject(project);
+              return (
+                <motion.article
+                  layout
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4 }}
+                  className="group relative rounded-3xl glass-card border-black/[0.06] dark:border-white/[0.08] overflow-hidden flex flex-col hover:border-indigo-500/40 transition-all duration-300 shadow-lg dark:shadow-xl"
+                >
+                  {/* Project Image Box */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={project.image}
+                      alt={translated.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
 
-                  {/* Top Bar Badges */}
-                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between">
-                    <span className="text-[10px] sm:text-[11px] font-mono px-2.5 sm:px-3 py-1 rounded-full bg-black/60 text-sky-300 border border-white/10 backdrop-blur-md">
-                      {project.category}
-                    </span>
-                    {project.status && (
-                      <span className="text-[9px] sm:text-[10px] font-mono px-2 sm:px-2.5 py-0.5 rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-md">
-                        {project.status}
+                    {/* Top Bar Badges */}
+                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between">
+                      <span className="text-[10px] sm:text-[11px] font-mono px-2.5 sm:px-3 py-1 rounded-full bg-black/60 text-sky-300 border border-white/10 backdrop-blur-md">
+                        {project.category}
                       </span>
-                    )}
-                  </div>
-
-                  {/* Quick Inspect Button */}
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    aria-label={`Inspect ${project.title} details`}
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px] cursor-pointer"
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-white text-slate-950 font-semibold text-xs shadow-2xl hover:scale-105 transition-transform">
-                      <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      <span>View Details</span>
-                    </span>
-                  </button>
-                </div>
-
-                {/* Project Card Content */}
-                <div className="p-5 sm:p-8 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
-                  <div>
-                    <div className="flex items-start justify-between gap-3 mb-1.5 sm:mb-2">
-                      <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
-                        {project.title}
-                      </h3>
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        aria-label={`Open ${project.title} information`}
-                        className="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1.5 rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.06] transition-colors shrink-0"
-                      >
-                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </button>
-                    </div>
-
-                    <p className="text-xs sm:text-sm font-mono text-cyan-700 dark:text-cyan-400 mb-2 sm:mb-3 font-medium">
-                      {project.tagline}
-                    </p>
-
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-light line-clamp-3">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Tags and Action CTAs */}
-                  <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-black/[0.06] dark:border-white/[0.05]">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-black/[0.06] dark:border-white/[0.06]"
-                        >
-                          {tag}
+                      {project.status && (
+                        <span className="text-[9px] sm:text-[10px] font-mono px-2 sm:px-2.5 py-0.5 rounded-full bg-black/60 text-slate-300 border border-white/10 backdrop-blur-md">
+                          {getStatusLabel(project.status)}
                         </span>
-                      ))}
+                      )}
                     </div>
 
-                    <div className="flex items-center justify-between pt-1 sm:pt-2 gap-2">
-                      <div className="flex items-center gap-2">
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`View ${project.title} code on GitHub`}
-                            className="min-h-[36px] sm:min-h-[38px] inline-flex items-center gap-1.5 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-xl glass-card hover:border-black/20 dark:hover:border-white/30 transition-colors"
-                          >
-                            <Github className="w-3.5 h-3.5" />
-                            <span>Code</span>
-                          </a>
-                        )}
-                        {project.demoUrl && project.demoUrl !== '#' && (
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`View ${project.title} Live Demo`}
-                            className="min-h-[36px] sm:min-h-[38px] inline-flex items-center gap-1.5 text-xs font-mono text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 px-3 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:border-sky-500/40 transition-colors"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Demo</span>
-                          </a>
-                        )}
+                    {/* Quick Inspect Button */}
+                    <button
+                      onClick={() => setSelectedProject(getTranslatedProjectForModal(project))}
+                      aria-label={`Inspect ${translated.title} details`}
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px] cursor-pointer"
+                    >
+                      <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl bg-white text-slate-950 font-semibold text-xs shadow-2xl hover:scale-105 transition-transform">
+                        <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <span>{t('projects.viewDetails')}</span>
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Project Card Content */}
+                  <div className="p-5 sm:p-8 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-1.5 sm:mb-2">
+                        <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                          {translated.title}
+                        </h3>
+                        <button
+                          onClick={() => setSelectedProject(getTranslatedProjectForModal(project))}
+                          aria-label={`Open ${translated.title} information`}
+                          className="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1.5 rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.06] transition-colors shrink-0"
+                        >
+                          <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </button>
                       </div>
 
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        className="text-xs font-mono text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium underline underline-offset-4 cursor-pointer py-1"
-                      >
-                        Inspect Stack →
-                      </button>
+                      <p className="text-xs sm:text-sm font-mono text-cyan-700 dark:text-cyan-400 mb-2 sm:mb-3 font-medium">
+                        {translated.tagline}
+                      </p>
+
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-light line-clamp-3">
+                        {translated.description}
+                      </p>
+                    </div>
+
+                    {/* Tags and Action CTAs */}
+                    <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-black/[0.06] dark:border-white/[0.05]">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-black/[0.06] dark:border-white/[0.06]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between pt-1 sm:pt-2 gap-2">
+                        <div className="flex items-center gap-2">
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`View ${translated.title} code on GitHub`}
+                              className="min-h-[36px] sm:min-h-[38px] inline-flex items-center gap-1.5 text-xs font-mono text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-xl glass-card hover:border-black/20 dark:hover:border-white/30 transition-colors"
+                            >
+                              <Github className="w-3.5 h-3.5" />
+                              <span>{t('projects.code')}</span>
+                            </a>
+                          )}
+                          {project.demoUrl && project.demoUrl !== '#' && (
+                            <a
+                              href={project.demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`View ${translated.title} Live Demo`}
+                              className="min-h-[36px] sm:min-h-[38px] inline-flex items-center gap-1.5 text-xs font-mono text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 px-3 py-1.5 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:border-sky-500/40 transition-colors"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              <span>{t('projects.demo')}</span>
+                            </a>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => setSelectedProject(getTranslatedProjectForModal(project))}
+                          className="text-xs font-mono text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium underline underline-offset-4 cursor-pointer py-1"
+                        >
+                          {t('projects.inspectStack')}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 
@@ -188,8 +218,12 @@ export const Projects: React.FC = () => {
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-slate-900 dark:text-white">Have a new build or prototype to add?</h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 font-light">All projects are configured in <code className="text-sky-600 dark:text-sky-300 font-mono">src/data/portfolioData.ts</code> for rapid customization.</p>
+              <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{t('projects.calloutText')}</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-light">
+                {t('projects.calloutSub').split('src/data/portfolioData.ts')[0]}
+                <code className="text-sky-600 dark:text-sky-300 font-mono">src/data/portfolioData.ts</code>
+                {t('projects.calloutSub').split('src/data/portfolioData.ts')[1]}
+              </p>
             </div>
           </div>
           <a
@@ -198,7 +232,7 @@ export const Projects: React.FC = () => {
             rel="noopener noreferrer"
             className="w-full sm:w-auto text-center text-xs font-mono px-4 py-2.5 rounded-xl bg-slate-200/80 hover:bg-slate-300/80 dark:bg-white/[0.05] dark:hover:bg-white/[0.09] text-slate-900 dark:text-white border border-black/10 dark:border-white/10 transition-colors whitespace-nowrap"
           >
-            Explore GitHub Profile ↗
+            {t('projects.exploreGithub')}
           </a>
         </div>
       </div>

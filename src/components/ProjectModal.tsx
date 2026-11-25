@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Github, CheckCircle, Layers, Tag } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Project } from '../types';
 
 interface ProjectModalProps {
@@ -9,6 +10,8 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const { t } = useTranslation();
+
   // Prevent background scroll when modal is open
   useEffect(() => {
     if (project) {
@@ -46,7 +49,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {/* Close button (Min 40x40px touch target) */}
           <button
             onClick={onClose}
-            aria-label="Close project modal"
+            aria-label={t('modal.close')}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full glass-card border-black/10 dark:border-white/20 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors cursor-pointer shadow-md"
           >
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -67,7 +70,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   {project.category}
                 </span>
                 <span className="text-[9px] sm:text-xs font-mono px-2.5 sm:px-3 py-1 rounded-full bg-black/70 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">
-                  Status: {project.status}
+                  {t('projects.statusLabel')} {t(`projects.statuses.${project.status}`)}
                 </span>
               </div>
             </div>
@@ -92,7 +95,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-100 dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06] space-y-1.5 sm:space-y-2">
                   <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">
                     <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span>Architecture & Stack</span>
+                    <span>{t('modal.architectureLabel')}</span>
                   </div>
                   <p className="text-xs sm:text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-light">
                     {project.architecture}
@@ -103,7 +106,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {/* Key Features */}
               <div className="space-y-2.5 sm:space-y-3">
                 <h4 className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-slate-400 font-semibold">
-                  Key Features
+                  {t('modal.featuresLabel')}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                   {project.features.map((feature, i) => (
@@ -119,7 +122,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               <div className="space-y-2">
                 <div className="flex items-center gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400 font-medium">
                   <Tag className="w-3.5 h-3.5" />
-                  <span>Technologies</span>
+                  <span>{t('modal.technologiesLabel')}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {project.tags.map((tag) => (
@@ -136,7 +139,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {/* Placeholder Note if applicable */}
               {project.placeholderNote && (
                 <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] sm:text-xs font-mono text-amber-800 dark:text-amber-200">
-                  📌 Note: {project.placeholderNote}
+                  {t('modal.notePrefix')} {project.placeholderNote}
                 </div>
               )}
 
@@ -150,7 +153,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     className="min-h-[42px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl glass-card text-xs font-mono text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:border-black/20 dark:hover:border-white/30 transition-all"
                   >
                     <Github className="w-4 h-4" />
-                    <span>GitHub Repository</span>
+                    <span>{t('modal.githubRepo')}</span>
                   </a>
                 )}
                 {project.demoUrl && project.demoUrl !== '#' && (
@@ -161,7 +164,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                     className="min-h-[42px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/25 hover:brightness-105 transition-all"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span>Live Demo</span>
+                    <span>{t('modal.liveDemo')}</span>
                   </a>
                 )}
               </div>

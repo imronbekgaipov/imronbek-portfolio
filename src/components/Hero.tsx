@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ChevronRight, Code2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { InteractiveCanvas } from './InteractiveCanvas';
 
 export const Hero: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section
       id="hero"
@@ -30,14 +33,14 @@ export const Hero: React.FC = () => {
             <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-emerald-500"></span>
           </span>
           <span className="text-[11px] sm:text-xs font-mono font-medium text-slate-700 dark:text-slate-300 truncate">
-            {PERSONAL_INFO.status}
+            {t('hero.availabilityBadge')}
           </span>
           <span className="text-[9px] sm:text-[10px] uppercase tracking-wider font-mono text-cyan-600 dark:text-cyan-400 border-l border-slate-300 dark:border-white/10 pl-2 shrink-0">
-            Uzbekistan
+            {t('hero.location')}
           </span>
         </motion.div>
 
-        {/* Large Expressive Headline - Fluidly responsive */}
+        {/* Large Expressive Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,7 +48,7 @@ export const Hero: React.FC = () => {
           className="mb-4 sm:mb-6 w-full"
         >
           <h1 className="font-display font-extrabold text-[2.25rem] min-[360px]:text-4xl min-[414px]:text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] sm:leading-[1.08] text-slate-900 dark:text-white break-words">
-            Hi, I'm{' '}
+            {t('hero.greeting')}{' '}
             <span className="text-gradient-accent inline-block drop-shadow-sm">
               {PERSONAL_INFO.name}.
             </span>
@@ -59,7 +62,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
           className="text-base min-[360px]:text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-light max-w-2xl mx-auto leading-relaxed mb-3 sm:mb-4 px-1"
         >
-          {PERSONAL_INFO.tagline}
+          {t('hero.tagline')}
         </motion.p>
 
         {/* Subtitle with Education context */}
@@ -69,11 +72,10 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.35, ease: 'easeOut' }}
           className="text-xs min-[360px]:text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10 px-2"
         >
-          Software Engineering student at{' '}
-          <span className="text-slate-900 dark:text-slate-200 font-medium">Fergana State Technical University</span>, focused on modern frontend architecture, React, and clean interface systems.
+          {t('hero.subtitle')}
         </motion.p>
 
-        {/* CTA Buttons - Full-width stacked on mobile, row on tablet/desktop */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +87,7 @@ export const Hero: React.FC = () => {
             className="w-full sm:w-auto min-h-[46px] sm:min-h-[50px] inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-sky-500 text-white font-semibold text-sm shadow-[0_0_25px_rgba(99,102,241,0.3)] dark:shadow-[0_0_25px_rgba(99,102,241,0.4)] hover:shadow-[0_0_35px_rgba(99,102,241,0.6)] active:scale-[0.98] transition-all"
           >
             <Sparkles className="w-4 h-4 text-sky-200" />
-            <span>Explore My Work</span>
+            <span>{t('hero.exploreWork')}</span>
             <ChevronRight className="w-4 h-4" />
           </a>
 
@@ -93,7 +95,7 @@ export const Hero: React.FC = () => {
             href="#contact"
             className="w-full sm:w-auto min-h-[46px] sm:min-h-[50px] inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl glass-card hover:border-indigo-400/50 text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white font-medium text-sm active:scale-[0.98] transition-all shadow-sm"
           >
-            <span>Let's Talk</span>
+            <span>{t('hero.letsTalk')}</span>
           </a>
         </motion.div>
 
@@ -105,7 +107,7 @@ export const Hero: React.FC = () => {
           className="mt-10 sm:mt-14 inline-flex items-center gap-2.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-2xl glass-card border-black/[0.06] dark:border-white/[0.06] text-[11px] sm:text-xs font-mono text-slate-600 dark:text-slate-400 shadow-sm max-w-full overflow-hidden"
         >
           <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-500 dark:text-sky-400 shrink-0" />
-          <span className="truncate">const dev = &#123; name: "Imronbek", focus: "React" &#125;;</span>
+          <span className="truncate">{`const dev = { name: "Imronbek", focus: "React" };`}</span>
         </motion.div>
       </div>
 
@@ -117,7 +119,7 @@ export const Hero: React.FC = () => {
         className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 sm:gap-2 pointer-events-none"
       >
         <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-400 dark:text-slate-500">
-          Scroll
+          {t('hero.scroll')}
         </span>
         <motion.div
           animate={{ y: [0, 5, 0] }}

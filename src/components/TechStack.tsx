@@ -12,13 +12,16 @@ import {
   Zap, 
   Layers
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { TECH_STACK } from '../data/portfolioData';
 import { TechItem } from '../types';
 
 export const TechStack: React.FC = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const categories = [
+  // Category values used for filtering (must match portfolioData TechItem.category values)
+  const DATA_CATEGORIES = [
     'All',
     'Core & Languages',
     'Frameworks & Libraries',
@@ -26,11 +29,19 @@ export const TechStack: React.FC = () => {
     'Workflow & Tools'
   ];
 
+  // Translation keys for each category label
+  const CATEGORY_LABELS: Record<string, string> = {
+    'All': t('techStack.filterAll'),
+    'Core & Languages': t('techStack.filterCore'),
+    'Frameworks & Libraries': t('techStack.filterFrameworks'),
+    'Styling & Motion': t('techStack.filterStyling'),
+    'Workflow & Tools': t('techStack.filterWorkflow'),
+  };
+
   const filteredTech = activeCategory === 'All'
     ? TECH_STACK
     : TECH_STACK.filter(item => item.category === activeCategory);
 
-  // Helper to render icon dynamically
   const renderIcon = (iconName: string, color: string) => {
     const props = { className: "w-5 h-5 sm:w-6 sm:h-6", style: { color } };
     switch (iconName) {
@@ -47,6 +58,14 @@ export const TechStack: React.FC = () => {
     }
   };
 
+  const getLevelLabel = (level: TechItem['level']) => {
+    return t(`techStack.levels.${level}`);
+  };
+
+  const getCategoryLabel = (category: TechItem['category']) => {
+    return CATEGORY_LABELS[category] ?? category;
+  };
+
   return (
     <section id="skills" className="py-16 sm:py-24 lg:py-28 relative bg-slate-100/60 dark:bg-[#070912]/50 border-y border-black/[0.05] dark:border-white/[0.04]">
       {/* Background glow */}
@@ -59,22 +78,21 @@ export const TechStack: React.FC = () => {
             <div className="flex items-center gap-2 mb-2 sm:mb-3">
               <span className="w-2 h-2 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
               <span className="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">
-                02 / Technical Stack
+                {t('techStack.sectionTag')}
               </span>
             </div>
             <h2 className="font-display font-bold text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl text-slate-900 dark:text-white tracking-tight">
-              Tools & technologies <br />
-              <span className="text-gradient-accent">I build with.</span>
+              {t('techStack.heading')}
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm mt-3 md:mt-0 font-light">
-            Core foundations and developer tooling actively explored throughout my software engineering studies.
+            {t('techStack.subtitle')}
           </p>
         </div>
 
-        {/* Category Filter Pills - Horizontally scrollable on mobile */}
+        {/* Category Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 sm:mb-10 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-          {categories.map((cat) => (
+          {DATA_CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -84,7 +102,7 @@ export const TechStack: React.FC = () => {
                   : 'glass-card text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-black/20 dark:hover:border-white/20'
               }`}
             >
-              {cat}
+              {CATEGORY_LABELS[cat]}
             </button>
           ))}
         </div>
@@ -122,7 +140,7 @@ export const TechStack: React.FC = () => {
                       ? 'bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/30'
                       : 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/30'
                   }`}>
-                    {tech.level}
+                    {getLevelLabel(tech.level)}
                   </span>
                 </div>
 
@@ -131,13 +149,13 @@ export const TechStack: React.FC = () => {
                 </h3>
 
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-light mb-3 sm:mb-4">
-                  {tech.description}
+                  {t(`techStack.items.${tech.name}.description`)}
                 </p>
 
                 <div className="pt-2.5 sm:pt-3 border-t border-black/[0.05] dark:border-white/[0.05] flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                  <span>{tech.category}</span>
+                  <span>{getCategoryLabel(tech.category)}</span>
                   <span className="opacity-0 group-hover:opacity-100 text-sky-600 dark:text-sky-400 transition-opacity font-medium">
-                    Active
+                    {t('techStack.active')}
                   </span>
                 </div>
               </motion.div>
@@ -148,7 +166,7 @@ export const TechStack: React.FC = () => {
         {/* Note / Disclaimer pill */}
         <div className="mt-8 sm:mt-12 text-center">
           <p className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-mono text-slate-600 dark:text-slate-400 px-3.5 sm:px-4 py-2 rounded-xl glass-card border-black/[0.06] dark:border-white/[0.06] shadow-sm max-w-full">
-            <span>💡 All technologies reflect active academic & personal practice at Fergana State Technical University.</span>
+            <span>{t('techStack.bottomNote')}</span>
           </p>
         </div>
       </div>

@@ -1,0 +1,280 @@
+{
+  "nav": {
+    "about": "About",
+    "techStack": "Tech Stack",
+    "projects": "Projects",
+    "journey": "Journey",
+    "contact": "Contact",
+    "letsTalk": "Let's Talk",
+    "github": "GitHub",
+    "githubHandle": "GitHub: @imronbekgaipov",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "switchToLight": "Switch to Light Mode",
+    "switchToDark": "Switch to Dark Mode"
+  },
+  "hero": {
+    "availabilityBadge": "Available for internships & collaborations",
+    "location": "Uzbekistan",
+    "greeting": "Hi, I'm",
+    "tagline": "I build digital experiences through code and creativity.",
+    "subtitle": "Software Engineering student at Fergana State Technical University, focused on modern frontend architecture, React, and clean interface systems.",
+    "exploreWork": "Explore My Work",
+    "letsTalk": "Let's Talk",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "sectionTag": "01 / About Me",
+    "heading": "Architecting interfaces with precision & curiosity.",
+    "role": "Software Engineering Student",
+    "university": "Fergana State Technical University, Uzbekistan",
+    "focusLabel": "Focus",
+    "focusValue": "Frontend & Software Systems",
+    "story1": "I'm a Software Engineering student at Fergana State Technical University, deeply passionate about crafting modern, intuitive digital interfaces. My journey started with foundational web technologies and has steadily evolved into building production-grade React applications with TypeScript and Tailwind CSS.",
+    "story2": "Beyond coursework, I invest significant time exploring the broader frontend ecosystem — studying design systems, component architecture patterns, and animation frameworks like Framer Motion. I believe that great software sits at the intersection of technical precision and thoughtful design.",
+    "story3": "My goal is to contribute to meaningful software products that people genuinely enjoy using — combining engineering depth with strong visual intuition.",
+    "card1Title": "Academic Pursuit",
+    "card1Desc": "Software Engineering curriculum at Fergana State Technical University.",
+    "card2Title": "Frontend Passion",
+    "card2Desc": "Dedicated to building beautiful, performant, and accessible web interfaces.",
+    "card3Title": "Creative Direction",
+    "card3Desc": "Design systems, motion design, and UI architecture deeply interest me.",
+    "card4Title": "Continuous Growth",
+    "card4Desc": "Constantly exploring new frameworks, tools, and engineering principles."
+  },
+  "techStack": {
+    "sectionTag": "02 / Technical Stack",
+    "heading": "Tools & technologies I build with.",
+    "subtitle": "Core foundations and developer tooling actively explored and applied across academic and personal projects.",
+    "filterAll": "All",
+    "filterCore": "Core & Languages",
+    "filterFrameworks": "Frameworks & Libraries",
+    "filterStyling": "Styling & Motion",
+    "filterWorkflow": "Workflow & Tools",
+    "active": "Active",
+    "bottomNote": "💡 All technologies reflect active academic & personal practice at Fergana State Technical University.",
+    "levels": {
+      "Proficient": "Proficient",
+      "Learning & Building": "Learning & Building",
+      "Exploring": "Exploring"
+    },
+    "items": {
+      "HTML5": {
+        "description": "Semantic document architecture, accessibility standards (a11y), and modern SEO foundations.",
+        "category": "Core & Languages"
+      },
+      "CSS3 / Modern CSS": {
+        "description": "Responsive layouts, Flexbox, Grid, custom properties, and smooth micro-interactions.",
+        "category": "Styling & Motion"
+      },
+      "JavaScript (ES6+)": {
+        "description": "Modern asynchronous JavaScript, DOM manipulation, closures, promises, and functional patterns.",
+        "category": "Core & Languages"
+      },
+      "React": {
+        "description": "Component architecture, declarative UI state, custom hooks, and modern frontend ecosystems.",
+        "category": "Frameworks & Libraries"
+      },
+      "TypeScript": {
+        "description": "Static type systems, strict interfaces, generics, and type-safe component development.",
+        "category": "Core & Languages"
+      },
+      "Tailwind CSS": {
+        "description": "Utility-first design systems, custom theme configuration, and responsive layout mastery.",
+        "category": "Styling & Motion"
+      },
+      "Git": {
+        "description": "Version control, branching workflows, commits, rebasing, and merge conflict resolution.",
+        "category": "Workflow & Tools"
+      },
+      "GitHub & GitHub CLI": {
+        "description": "Repository management, automated remote pushes, CLI tooling (`gh`), and collaborative workflows.",
+        "category": "Workflow & Tools"
+      },
+      "Vite": {
+        "description": "Next-generation frontend tooling, lightning-fast HMR, and optimized production bundling.",
+        "category": "Workflow & Tools"
+      },
+      "Framer Motion": {
+        "description": "Declarative page transitions, gesture animations, spring physics, and scroll-driven reveals.",
+        "category": "Styling & Motion"
+      }
+    }
+  },
+  "projects": {
+    "sectionTag": "03 / Featured Projects",
+    "heading": "Selected works & creative experiments.",
+    "filterAll": "All",
+    "filterFrontend": "Frontend",
+    "filterWebApps": "Web Apps",
+    "filterExperiments": "Experiments",
+    "viewDetails": "View Details",
+    "code": "Code",
+    "demo": "Demo",
+    "inspectStack": "Inspect Stack →",
+    "calloutText": "Have a new build or prototype to add?",
+    "calloutSub": "All projects are configured in src/data/portfolioData.ts for rapid customization.",
+    "exploreGithub": "Explore GitHub Profile ↗",
+    "statusLabel": "Status:",
+    "statuses": {
+      "Completed": "Completed",
+      "In Progress": "In Progress",
+      "Concept Prototype": "Concept Prototype"
+    },
+    "items": {
+      "project-1": {
+        "title": "Personal Developer Portfolio",
+        "tagline": "Interactive Portfolio with Agency Aesthetics & 3D Visuals",
+        "description": "A production-grade, highly responsive developer portfolio built with React, TypeScript, Tailwind CSS, and Framer Motion. Features interactive particle canvas, glassmorphic UI, dynamic theme modes, and GitHub automation.",
+        "features": [
+          "Custom interactive math/physics particle canvas hero element",
+          "Editorial typography with Syne and Plus Jakarta Sans",
+          "Interactive technology and journey exploration timelines",
+          "Validated contact form with simulated submission feedback",
+          "Fully responsive down to 375px mobile screens"
+        ],
+        "architecture": "Component-driven React 18 architecture with modular state, strict TypeScript interfaces, and Framer Motion layout transitions.",
+        "placeholderNote": "Active live repository. You can customize the content and screenshots anytime!"
+      },
+      "project-2": {
+        "title": "Modern Web Application (Placeholder)",
+        "tagline": "[Editable Placeholder: Replace with your project title]",
+        "description": "A placeholder for your upcoming software project or frontend build. Showcase your React components, state management experiments, API integrations, or web utilities here.",
+        "features": [
+          "[Placeholder Feature 1]: Responsive interface design",
+          "[Placeholder Feature 2]: Real-time user interactions",
+          "[Placeholder Feature 3]: Clean data fetching and state synchronization"
+        ],
+        "architecture": "Modular frontend structure with custom hooks and reusable UI components.",
+        "placeholderNote": "Replace this card with your next project (e.g., Task Manager, E-Commerce UI, Weather App)."
+      },
+      "project-3": {
+        "title": "Interactive UI Component System (Placeholder)",
+        "tagline": "[Editable Placeholder: Replace with your project title]",
+        "description": "A showcase of custom interactive UI elements, accessible modal dialogues, sleek micro-interactions, and responsive layout patterns crafted with modern CSS and JavaScript.",
+        "features": [
+          "[Placeholder Feature 1]: Accessible keyboard navigation",
+          "[Placeholder Feature 2]: Fluid animation and transitions",
+          "[Placeholder Feature 3]: Cross-browser compatibility"
+        ],
+        "architecture": "CSS custom properties, semantic markup, and lightweight JavaScript interaction handlers.",
+        "placeholderNote": "Add your UI library or CSS experiment here."
+      },
+      "project-4": {
+        "title": "Algorithm & Data Structure Lab (Placeholder)",
+        "tagline": "[Editable Placeholder: Replace with your university coursework project]",
+        "description": "Visual exploration and implementation of core software engineering algorithms, data structures, and computational thinking developed during university studies.",
+        "features": [
+          "[Placeholder Feature 1]: Visual algorithm step-through",
+          "[Placeholder Feature 2]: Complexity analysis comparisons",
+          "[Placeholder Feature 3]: Clean documentation and test cases"
+        ],
+        "architecture": "Clean, algorithmic code written for educational demonstration and efficiency.",
+        "placeholderNote": "Perfect place to link your University coursework or GitHub learning repository."
+      }
+    }
+  },
+  "modal": {
+    "architectureLabel": "Architecture & Stack",
+    "featuresLabel": "Key Features",
+    "technologiesLabel": "Technologies",
+    "githubRepo": "GitHub Repository",
+    "liveDemo": "Live Demo",
+    "notePrefix": "📌 Note:",
+    "close": "Close project modal"
+  },
+  "journey": {
+    "sectionTag": "04 / Progression",
+    "heading": "Educational & coding journey.",
+    "subtitle": "Milestones and ongoing growth in software engineering and web technologies.",
+    "types": {
+      "Education": "Education",
+      "Milestone": "Milestone",
+      "Exploration": "Exploration"
+    },
+    "statuses": {
+      "Current": "Current",
+      "Completed": "Completed",
+      "Upcoming": "Upcoming"
+    },
+    "items": {
+      "0": {
+        "title": "Software Engineering Student",
+        "institution": "Fergana State Technical University",
+        "location": "Fergana, Uzbekistan",
+        "description": "Deepening foundational knowledge in computer science, software engineering principles, algorithms, and modern frontend application development.",
+        "highlights": [
+          "Specializing in Software Engineering curriculum",
+          "Studying software design, logic, and data architectures",
+          "Active self-directed learning in React and JavaScript ecosystems"
+        ]
+      },
+      "1": {
+        "title": "Frontend Development Exploration",
+        "institution": "Independent Practice & Community Learning",
+        "location": "Self-Directed",
+        "description": "Began hands-on programming journey by mastering HTML5 semantics, modern CSS layout techniques (Flexbox, Grid), and foundational JavaScript fundamentals.",
+        "highlights": [
+          "Built responsive web layouts and interface prototypes",
+          "Adopted Git and GitHub for version control and project tracking",
+          "Transitioned into modern React component architecture"
+        ]
+      },
+      "2": {
+        "title": "Professional Engineering & Fullstack Growth",
+        "institution": "Future Ambition [Editable Placeholder]",
+        "location": "Global / Remote",
+        "description": "Aiming to contribute to impactful software products, collaborate with engineering teams, and expand expertise into fullstack development and scalable systems.",
+        "highlights": [
+          "Open to junior developer roles and engineering internships",
+          "Building production-grade open source projects on GitHub",
+          "Mastering TypeScript, Next.js, and backend integration"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "sectionTag": "05 / Connection",
+    "heading": "Let's build something exceptional together.",
+    "description": "I'm open to internship opportunities, collaborative projects, and meaningful engineering conversations. Whether you have an idea, a question, or an opportunity — I'd love to hear from you.",
+    "directContact": "Direct Contact",
+    "quickResponse": "Quick Response",
+    "emailHint": "Click to open mail app or use copy button",
+    "copyEmail": "Copy email address",
+    "findMeOn": "Find Me On",
+    "formTitle": "Send a Message",
+    "netlifyPowered": "Netlify Powered",
+    "formSubtitle": "Drop me a message below and I'll respond within 24–48 hours.",
+    "nameLabel": "Your Name *",
+    "emailLabel": "Email Address *",
+    "subjectLabel": "Subject / Discussion Topic *",
+    "messageLabel": "Message *",
+    "namePlaceholder": "e.g. Alex Smith",
+    "emailPlaceholder": "alex@domain.com",
+    "subjectPlaceholder": "Project inquiry, Internship, or Introduction",
+    "messagePlaceholder": "Tell me about your idea, opportunity, or timeline...",
+    "submitBtn": "Transmit Message",
+    "submittingBtn": "Transmitting message...",
+    "sendAnother": "Send Another",
+    "successTitle": "Message Dispatched Successfully!",
+    "successDesc": "Thank you for reaching out. I'll review your message and respond within 24–48 hours.",
+    "errorTitle": "Transmission Alert",
+    "errorDismiss": "Dismiss",
+    "netlifyError": "Failed to send message via Netlify Forms. Please try emailing me directly.",
+    "validation": {
+      "nameRequired": "Please enter your name",
+      "emailRequired": "Please enter your email address",
+      "emailInvalid": "Please provide a valid email format",
+      "subjectRequired": "Please enter a subject or purpose",
+      "messageRequired": "Please write a brief message",
+      "messageTooShort": "Message must be at least 10 characters"
+    }
+  },
+  "footer": {
+    "devPortfolio": "/ Developer Portfolio",
+    "university": "Software Engineering • Fergana State Technical University",
+    "copyright": "© {{year}} {{name}}. Built with React, TypeScript & Tailwind CSS.",
+    "backToTop": "Scroll back to top",
+    "githubProfile": "GitHub Profile"
+  }
+}
